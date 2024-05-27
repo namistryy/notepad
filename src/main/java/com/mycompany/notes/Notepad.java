@@ -66,11 +66,7 @@ public abstract class Notepad extends JFrame implements ActionListener, WindowLi
         setSize(500,500);
         setTitle("Untitled.txt - Notepad");
         setVisible(true);
-        
-        
-        
-        
-        
+  
     }
 
     public void createMenuItem(JMenu jm, String txt) {
@@ -91,7 +87,7 @@ public abstract class Notepad extends JFrame implements ActionListener, WindowLi
                 try{
                     File file = jfc.getSelectedFile();
                     OpenFile(file.getAbsolutePath());
-                    this.setTitle(file.getName()+"- Notepad");
+                    this.setTitle(file.getName()+" - Notepad");
                     fnameContainer = file;
                 }catch(IOException e){}
             }
@@ -99,10 +95,33 @@ public abstract class Notepad extends JFrame implements ActionListener, WindowLi
             if(fnameContainer!=null){
                 jfc.setCurrentDirectory(fnameContainer);
                 jfc.setSelectedFile(fnameContainer);
+            } else {
+                jfc.setSelectedFile(new File("Untitled.txt"));
+                
             }
+            int ret = jfc.showDialog(null);
+            if(ret == JFileChooser.APPROVE_OPTION){
+                try{
+                    File file = jfc.getSelectedFile();
+                    SaveFile(file.getAbsolutePath());
+                    this.setTitle(file.getName()+" - Notepad");
+                    fnameContainer = file;
+                } catch(Exception e){}
+            }
+        } else if (e.getActionCommand().equals("Exit")){
+            Exiting();
+        } else if(e.getActionCommand().equals("Copy")){
+            jta.copy();
+            
+        } else if(e.getActionCommand().equals("Paste")){
+            jta.paste();
+        } else if(e.getActionCommand().equals("About Notepad")){
+            JOptionPane.showMessageDialog(this, "Created by N. Mistry", JOptionPane.INFORMATION_MESSAGE);
+        } else if(e.getActionCommand().equals("Cut")){
+            jta.cut();
         }
     }
 
-    
+    //creating method for opening the file
 }
 
