@@ -123,5 +123,48 @@ public abstract class Notepad extends JFrame implements ActionListener, WindowLi
     }
 
     //creating method for opening the file
+    public void OpenFile(String fname) throws IOException{
+        BufferedReader d = new BufferedReader(new InputStreamReader(new FileInputStream(fname)));
+        String l;
+        jta.setText("");
+        setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        while((l=d.readLine())!=null){
+            jta.setText(jta.getText()+1+"\r\n");
+            
+        }
+        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        d.close();
+    }
+    
+    //creating method to save the file
+    public void SaveFile(String fname) throws IOException{
+        setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        DataOutputStream o = new DataOutputStream(new FileOutputStream(fname));
+        o.writeBytes(jta.getText());
+        o.close();
+        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }
+    // method to close window 
+    public void windowDeactivated(WindowEvent e){}
+    
+    public void windowActivated(WindowEvent e){}
+    
+    public void windowDeiconified(WindowEvent e){}
+    
+    public void windowIconified(WindowEvent e){}
+    
+    public void windowClosed(WindowEvent e){}
+    
+    public void windowClosing(WindowEvent e){
+        Exiting();
+    }
+    
+    public void windowOpened(WindowEvent e){}
+    
+    public void Exiting(){
+        System.exit(0);
+    }
+    
+        
 }
 
