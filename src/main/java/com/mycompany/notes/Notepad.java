@@ -15,7 +15,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author mistr
  */
-public abstract class Notepad extends JFrame implements ActionListener, WindowListener {
+public class Notepad extends JFrame implements ActionListener, WindowListener {
     JTextArea jta = new JTextArea();
     File fnameContainer;
     
@@ -116,7 +116,7 @@ public abstract class Notepad extends JFrame implements ActionListener, WindowLi
         } else if(e.getActionCommand().equals("Paste")){
             jta.paste();
         } else if(e.getActionCommand().equals("About Notepad")){
-            JOptionPane.showMessageDialog(this, "Created by N. Mistry", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Created by N. Mistry", "Notepad", JOptionPane.INFORMATION_MESSAGE);
         } else if(e.getActionCommand().equals("Cut")){
             jta.cut();
         }
