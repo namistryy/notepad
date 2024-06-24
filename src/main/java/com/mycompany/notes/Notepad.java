@@ -89,7 +89,7 @@ public class Notepad extends JFrame implements ActionListener, WindowListener {
                     OpenFile(file.getAbsolutePath());
                     this.setTitle(file.getName()+" - Notepad");
                     fnameContainer = file;
-                }catch(IOException e){}
+                }catch(IOException ers){}
             }
         } else if(e.getActionCommand().equals("Save")){
             if(fnameContainer!=null){
@@ -99,14 +99,14 @@ public class Notepad extends JFrame implements ActionListener, WindowListener {
                 jfc.setSelectedFile(new File("Untitled.txt"));
                 
             }
-            int ret = jfc.showDialog(null);
+            int ret = jfc.showSaveDialog(null);
             if(ret == JFileChooser.APPROVE_OPTION){
                 try{
                     File file = jfc.getSelectedFile();
                     SaveFile(file.getAbsolutePath());
                     this.setTitle(file.getName()+" - Notepad");
                     fnameContainer = file;
-                } catch(Exception e){}
+                } catch(Exception ers){}
             }
         } else if (e.getActionCommand().equals("Exit")){
             Exiting();
